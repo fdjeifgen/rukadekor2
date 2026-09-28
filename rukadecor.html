@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>РукаДекор — декор стен и мебель ручной работы</title>
+<meta name="description" content="«РукаДекор» — каталог авторских панно, зеркал, полок и мебели из массива дерева. Каждое изделие сделано вручную.">
+<meta name="keywords" content="декор стен, мебель ручной работы, панно, зеркало, макраме">
+<meta property="og:title" content="РукаДекор">
+<meta property="og:description" content="Декор стен и мебель ручной работы">
+<style>
+:root{--bg:#faf6f1;--card:#fff;--ink:#2b211d;--muted:#8a7565;--accent:#a9714a;--accent-d:#8c5a38;--line:#eadfd3;--foot:#2b211d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.4}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px;position:relative}
+.logo{font-weight:700;font-size:20px;color:var(--accent-d);text-decoration:none}
+nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:24px}
+nav a{color:#4a2f1f;text-decoration:none;font-size:15px}
+nav a:hover{color:var(--accent)}
+.right{display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;background:#fff;border:1px solid var(--line);border-radius:8px;height:34px;min-width:46px;font-size:16px}
+.badge{position:absolute;top:-8px;right:-8px;background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;font-size:11px;display:flex;align-items:center;justify-content:center}
+.burger{display:none}
+.hero{background:linear-gradient(#fff,var(--bg));text-align:center;padding:48px 16px 96px}
+.hero h1{font-size:30px;margin:0 0 8px}
+.hero p{max-width:440px;margin:0 auto 20px;color:var(--muted);font-size:16px}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:12px 20px;font-size:15px;display:inline-block;text-decoration:none}
+.btn:hover{background:var(--accent-d)}
+.btn.block{width:100%;padding:12px}
+section h2{text-align:center;font-size:22px;margin:0 0 12px}
+.sub{text-align:center;color:var(--muted);margin:0 0 20px;font-size:15px}
+#catalog{padding:56px 0 64px}
+.filters{display:flex;justify-content:center;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:#fff;border-radius:20px;padding:6px 16px;font-size:14px;font-family:Arial,sans-serif}
+.chip[aria-selected=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.pic{background:#f9f4ee;height:104px;display:flex;align-items:center;justify-content:center;font-size:44px}
+.info{padding:14px;display:flex;flex-direction:column;flex:1}
+.cat{font-size:12px;color:var(--muted)}
+.name{font-weight:700;font-size:16px;margin:4px 0 auto;min-height:44px}
+.price{color:var(--accent-d);font-weight:700;margin:14px 0 8px}
+.card .btn{width:100%;padding:9px;font-size:14px}
+#features{background:#fff;padding:48px 0 40px}
+.feat{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;margin-top:16px}
+.feat .ic{font-size:28px}
+.feat h3{margin:2px 0 4px;font-size:15px}
+.feat p{margin:0;color:var(--muted);font-size:13px}
+footer{background:var(--foot);color:#f3e9de;text-align:center;padding:26px 16px calc(26px + env(safe-area-inset-bottom,0px));font-size:13px}
+footer p{margin:3px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal.open{display:flex}
+.box{background:#fff;border-radius:14px;width:100%;max-width:400px;padding:22px;max-height:90vh;overflow:auto}
+.box h3{margin:0;font-size:18px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.x{background:none;border:0;font-size:22px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;gap:8px}
+.qty{display:flex;align-items:center;gap:10px}
+.qty button{width:26px;height:26px;border:1px solid var(--line);background:var(--bg);border-radius:6px}
+.total{display:flex;justify-content:space-between;font-weight:700;margin:14px 0;padding-top:12px;border-top:1px solid var(--line)}
+.empty{text-align:center;color:var(--muted);padding:20px 0}
+.pay label{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:10px;font-size:15px;cursor:pointer}
+.pay input{accent-color:var(--accent)}
+.done{text-align:center;padding:10px 0}
+.toast{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:#fff;padding:12px 18px;border-radius:8px;font-size:14px;opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none;z-index:60;max-width:calc(100% - 40px)}
+.toast.show{opacity:1;transform:none}
+@media(max-width:900px){.grid,.feat{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+ .burger{display:inline-block}
+ nav{display:none;position:absolute;top:64px;left:0;right:0;transform:none;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line)}
+ nav.open{display:flex}
+ nav a{padding:14px 16px;border-top:1px solid var(--line)}
+ .hero h1{font-size:26px}
+}
+@media(max-width:480px){.grid{gap:14px}.pic{font-size:36px}.info{padding:10px}.name{font-size:14px}.toast{left:20px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap bar">
+  <a class="logo" href="#top" id="logo">🪵 РукаДекор</a>
+  <nav id="nav" aria-label="Главное меню">
+   <a href="#about">О нас</a><a href="#catalog">Каталог</a><a href="#features">Преимущества</a><a href="#contacts">Контакты</a>
+  </nav>
+  <div class="right">
+   <button class="icon-btn" id="cartBtn" aria-label="Корзина">🛒<span class="badge" id="count">0</span></button>
+   <button class="icon-btn burger" id="burger" aria-label="Меню">☰</button>
+  </div>
+ </div>
+</header>
+
+<main id="top">
+ <section class="hero" id="about">
+  <h1>Декор стен и мебель ручной работы</h1>
+  <p>«РукаДекор» — каталог авторских панно, зеркал, полок и мебели из массива дерева. Каждое изделие сделано вручную мастерами, а не штампуется на конвейере.</p>
+  <a class="btn" href="#catalog">Смотреть каталог</a>
+ </section>
+
+ <section id="catalog">
+  <div class="wrap">
+   <h2>Каталог изделий</h2>
+   <p class="sub">Фильтруйте по категории, чтобы быстрее найти нужное</p>
+   <div class="filters" role="tablist" id="filters"></div>
+   <div class="grid" id="grid"></div>
+  </div>
+ </section>
+
+ <section id="features">
+  <div class="wrap">
+   <h2>Почему выбирают нас</h2>
+   <div class="feat">
+    <div><div class="ic">🖐️</div><h3>Ручная работа</h3><p>Каждое изделие уникально, без штамповки.</p></div>
+    <div><div class="ic">🌳</div><h3>Натуральные материалы</h3><p>Массив дерева, лён, металл — без пластика.</p></div>
+    <div><div class="ic">📐</div><h3>Размер под заказ</h3><p>Подгоняем под интерьер клиента.</p></div>
+    <div><div class="ic">🚚</div><h3>Доставка по России</h3><p>Бережная упаковка ручной работы.</p></div>
+   </div>
+  </div>
+ </section>
+</main>
+
+<footer id="contacts">
+ <p><b>РукаДекор</b></p>
+ <p>Есть вопросы? Свяжитесь с нами:</p>
+ <p>📞 +7 (900) 123-45-67 &nbsp; ✉️ hello@rukadecor.ru</p>
+ <p>© 2026 РукаДекор</p>
+</footer>
+
+<div class="modal" id="cartModal"><div class="box" id="cartBox"></div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+'use strict';
+function sanitize(str){const d=document.createElement('div');d.textContent=String(str);return d.innerHTML}
+
+/* Reactive Store */
+function createStore(initial){
+  const subs=new Set();
+  const state=new Proxy(initial,{set(t,k,v){t[k]=v;subs.forEach(f=>f(t));return true}});
+  return {state,subscribe:f=>{subs.add(f);f(initial)}};
+}
+
+const PRODUCTS=[
+ {id:1,cat:'Декор стен',name:'Панно "Горы" из дуба',price:4200,icon:'🖼️'},
+ {id:2,cat:'Декор стен',name:'Круглое зеркало в ротанге',price:5600,icon:'🪞'},
+ {id:3,cat:'Декор стен',name:'Настенные полки из массива (3 шт.)',price:3100,icon:'🗄️'},
+ {id:4,cat:'Декор стен',name:'Макраме-панно "Волна"',price:2800,icon:'🧶'},
+ {id:5,cat:'Мебель',name:'Кресло из массива ясеня',price:18900,icon:'🪑'},
+ {id:6,cat:'Мебель',name:'Журнальный стол, дуб+эпоксидка',price:24500,icon:'🛋️'},
+ {id:7,cat:'Мебель',name:'Табурет-пуф из каната',price:5400,icon:'🪑'},
+ {id:8,cat:'Мебель',name:'Комод с резными ручками',price:32000,icon:'🗄️'}
+];
+const CATS=['Все','Декор стен','Мебель'];
+const fmt=n=>n.toLocaleString('ru-RU').replace(/\u00a0/g,' ')+' ₽';
+const $=id=>document.getElementById(id);
+
+const store=createStore({filter:'Все',cart:{},step:'cart',pay:'cash'});
+const S=store.state;
+
+function renderFilters(){
+  $('filters').innerHTML=CATS.map(c=>`<button class="chip" role="tab" aria-selected="${S.filter===c}" data-c="${sanitize(c)}">${sanitize(c)}</button>`).join('');
+}
+function renderCatalog(){
+  const list=PRODUCTS.filter(p=>S.filter==='Все'||p.cat===S.filter);
+  $('grid').innerHTML=list.map(p=>`<article class="card"><div class="pic">${p.icon}</div><div class="info"><span class="cat">${sanitize(p.cat)}</span><div class="name">${sanitize(p.name)}</div><div class="price">${fmt(p.price)}</div><button class="btn" data-add="${p.id}">Добавить в корзину</button></div></article>`).join('');
+}
+const items=()=>Object.entries(S.cart).map(([id,q])=>({p:PRODUCTS.find(x=>x.id==id),q}));
+const total=()=>items().reduce((s,i)=>s+i.p.price*i.q,0);
+function renderCart(){
+  $('count').textContent=items().reduce((s,i)=>s+i.q,0);
+  const it=items(),b=$('cartBox');
+  const head=t=>`<div class="top"><h3>${t}</h3><button class="x" data-close aria-label="Закрыть">✕</button></div>`;
+  if(S.step==='cart'){
+    b.innerHTML=head('Корзина')+(it.length?it.map(i=>`<div class="row"><span>${sanitize(i.p.name)}</span><span class="qty"><button data-dec="${i.p.id}">−</button>${i.q}<button data-inc="${i.p.id}">+</button></span></div>`).join('')+`<div class="total"><span>Итого:</span><span>${fmt(total())}</span></div><button class="btn block" data-checkout>Оформить заказ</button>`:'<div class="empty">Корзина пуста</div>');
+  }else if(S.step==='pay'){
+    b.innerHTML=head('Оформление заказа')+`<p style="margin:0 0 12px;color:var(--muted)">Выберите способ оплаты</p><div class="pay"><label><input type="radio" name="pay" value="cash" ${S.pay==='cash'?'checked':''}> Наличные при получении</label><label><input type="radio" name="pay" value="sbp" ${S.pay==='sbp'?'checked':''}> СБП (Система быстрых платежей)</label></div><div class="total"><span>К оплате:</span><span>${fmt(total())}</span></div><button class="btn block" data-confirm>Подтвердить заказ</button>`;
+  }else{
+    b.innerHTML=head('Заказ оформлен')+`<div class="done"><div style="font-size:44px">✅</div><p>Спасибо! Мы свяжемся с вами для уточнения деталей.</p><button class="btn block" data-close>Закрыть</button></div>`;
+  }
+}
+store.subscribe(()=>{renderFilters();renderCatalog();renderCart()});
+
+let tt;function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2200)}
+const openCart=()=>{S.step='cart';$('cartModal').classList.add('open')};
+const closeCart=()=>{$('cartModal').classList.remove('open');if(S.step==='done'){S.cart={};}S.step='cart'};
+
+document.addEventListener('click',e=>{
+  const t=e.target,g=a=>t.closest('['+a+']');
+  let el;
+  if(el=g('data-c'))S.filter=el.dataset.c;
+  else if(el=g('data-add')){const id=el.dataset.add;const c={...S.cart};c[id]=(c[id]||0)+1;S.cart=c;toast('Добавлено в корзину: '+PRODUCTS.find(p=>p.id==id).name)}
+  else if(el=g('data-inc')){const c={...S.cart};c[el.dataset.inc]++;S.cart=c}
+  else if(el=g('data-dec')){const c={...S.cart};if(--c[el.dataset.dec]<=0)delete c[el.dataset.dec];S.cart=c}
+  else if(g('data-checkout'))S.step='pay';
+  else if(g('data-confirm'))S.step='done';
+  else if(g('data-close'))closeCart();
+  else if(t===$('cartModal'))closeCart();
+  else if(t.closest('#cartBtn'))openCart();
+  else if(t.closest('#burger'))$('nav').classList.toggle('open');
+  else if(t.closest('#nav a'))$('nav').classList.remove('open');
+  else if(t.closest('#logo')){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})}
+});
+document.addEventListener('change',e=>{if(e.target.name==='pay')S.pay=e.target.value});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCart()});
+</script>
+</body>
+</html>
